@@ -4,8 +4,15 @@ namespace BlazorDemo.Shared
 {
     public static class Policies
     {
+        public const string IsSuperAdmin = "IsSuperAdmin";
         public const string IsAdmin = "IsAdmin";
         public const string IsUser = "IsUser";
+        public static AuthorizationPolicy IsSuperAdminPolicy()
+        {
+            return new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
+                                                   .RequireRole("SuperAdmin")
+                                                   .Build();
+        }
 
         public static AuthorizationPolicy IsAdminPolicy()
         {

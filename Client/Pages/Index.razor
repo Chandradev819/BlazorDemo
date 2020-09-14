@@ -3,6 +3,9 @@
 <h1>Hello, world!</h1>
 
 <p>Welcome to your new app.</p>
+<p>@Policies.IsAdmin</p>
+<p>@Policies.IsUser</p>
+<p>@Policies.IsSuperAdmin</p>
 
 <AuthorizeView Policy="@Policies.IsUser">
     <p>You can only see this if you satisfy the IsUser policy.</p>

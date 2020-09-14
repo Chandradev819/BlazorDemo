@@ -51,6 +51,7 @@ namespace BlazorDemo.Server
                     });
             services.AddAuthorization(config =>
             {
+                config.AddPolicy(Policies.IsSuperAdmin, Policies.IsSuperAdminPolicy());
                 config.AddPolicy(Policies.IsAdmin, Policies.IsAdminPolicy());
                 config.AddPolicy(Policies.IsUser, Policies.IsUserPolicy());
             });

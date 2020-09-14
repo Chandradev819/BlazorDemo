@@ -36,10 +36,15 @@ namespace BlazorDemo.Server.Controllers
             // Add all new users to the User role
             await _userManager.AddToRoleAsync(newUser, "User");
 
-            // Add new users whose email starts with 'admin' to the Admin role
-            if (newUser.Email.StartsWith("admin"))
+            // Add new users whose email starts with 'admin' or super admin to the Admin role
+            if (newUser.Email.ToLower().StartsWith("admin")|| newUser.Email.ToLower().StartsWith("super"))
             {
                 await _userManager.AddToRoleAsync(newUser, "Admin");
+            }
+            // Add new users whose email starts with 'superadmin' to the SuperAdmin role
+            if (newUser.Email.ToLower().StartsWith("super"))
+            {
+                await _userManager.AddToRoleAsync(newUser, "SuperAdmin");
             }
 
             return Ok(new RegisterResult { Successful = true });

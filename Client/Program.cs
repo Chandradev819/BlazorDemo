@@ -22,6 +22,7 @@ namespace BlazorDemo.Client
             builder.Services.AddBlazoredLocalStorage();
             builder.Services.AddAuthorizationCore(config =>
             {
+                config.AddPolicy(Policies.IsSuperAdmin, Policies.IsSuperAdminPolicy());
                 config.AddPolicy(Policies.IsAdmin, Policies.IsAdminPolicy());
                 config.AddPolicy(Policies.IsUser, Policies.IsUserPolicy());
             });
