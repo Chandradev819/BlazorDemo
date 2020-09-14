@@ -1,0 +1,24 @@
+﻿Please restore the database from Script in given Readme Folder
+
+If you are running without any database restore. Please follow this instruction
+1. Run the this Command on Nuget package Manger
+ a> add-migration intial11
+ b> update-database
+
+ Otherwise, you can also restore DBscript in your database,
+
+ While creating the AdminUser, Start the username starting with admin
+ While creating the SuperAdminUser, Start the username starting with SuperAdmin
+
+ User Detials
+ ---------------------
+ 1. Admin@gmail.com (can view Fetch Data page)
+ 2. SuperAdmin@gmail.com (Can view all the page)
+ 3. chandradev@gmail.com (Can view only Home and Counter Page)
+
+ PLease view the data mapping in this table
+ Select * from dbo.MenuItems
+
+
+
+ 
