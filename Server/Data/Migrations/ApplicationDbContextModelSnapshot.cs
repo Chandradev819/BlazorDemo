@@ -19,6 +19,30 @@ namespace BlazorDemo.Server.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BlazorDemo.Shared.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IconName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MenuName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PolicyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuItems");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -48,22 +72,22 @@ namespace BlazorDemo.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cd886046-c593-4198-ac1a-27b5eff2c8e7",
-                            ConcurrencyStamp = "8780a96d-8f62-43e1-890f-1635add7bd73",
+                            Id = "d15ebf45-a1bc-4f88-9ac9-1507dc64312c",
+                            ConcurrencyStamp = "21c37fa1-de1a-4faf-8b8c-e79e15ce4516",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4df4e758-a7f2-4e28-b1f5-a381a87d94a3",
-                            ConcurrencyStamp = "611eb5a8-6ae4-4315-98d2-14d7742f656a",
+                            Id = "d2a7404c-9ab1-4e96-9102-79fd5c5e5bd6",
+                            ConcurrencyStamp = "854e390f-3060-4b51-b4d6-714bfba69bb4",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "751368bd-7da8-497d-af64-ba786b36c6d0",
-                            ConcurrencyStamp = "cfe99f9a-c241-4e03-bdb8-0a4f6bf80994",
+                            Id = "1dca64d1-fa85-410b-aae8-1bc882a2061d",
+                            ConcurrencyStamp = "34b586b5-d509-4d0e-8c68-04dfabf550ec",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });

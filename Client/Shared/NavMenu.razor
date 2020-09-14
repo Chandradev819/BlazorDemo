@@ -1,4 +1,7 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@using BlazorDemo.Shared
+@inject HttpClient Http
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">ClientSideBlazor</a>
     <button class="navbar-toggler" @onclick="@ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -6,34 +9,41 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="@ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <AuthorizeView Policy="@Policies.IsAdmin">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="fetchdata">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                </NavLink>
-            </li>
-        </AuthorizeView>
-    </ul>
+
+    @if (menulist == null)
+    {
+        <p><em>Loading ...</em></p>
+    }
+    else
+    {
+<ul class="nav flex-column">
+    @foreach (var mn in menulist)
+        {
+            <AuthorizeView Policy= "@mn.PolicyName">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="@mn.MenuName">
+                        <span class="@mn.IconName" aria-hidden="true"></span> @mn.PageName
+                    </NavLink>
+                </li>
+            </AuthorizeView>
+        }
+</ul>
+    }
 </div>
 
 @code {
     bool collapseNavMenu = true;
 
     string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private Menu[] menulist;
 
     void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        menulist = await Http.GetFromJsonAsync<Menu[]>("api/Menu");
+        Console.WriteLine(menulist);
     }
 }

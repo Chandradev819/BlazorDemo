@@ -4,20 +4,43 @@ using BlazorDemo.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazorDemo.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200914063324_Initial1")]
+    partial class Initial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BlazorDemo.Shared.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IconName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PolicyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuItems");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -48,17 +71,24 @@ namespace BlazorDemo.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4203f28f-602a-4f0f-b0ba-44cfc815a9a1",
-                            ConcurrencyStamp = "1f09fb46-f2b7-419a-a7d2-f41fb13d8a52",
+                            Id = "c344e73b-7985-45dc-8601-d745588fae8a",
+                            ConcurrencyStamp = "8c13bbd0-b013-4b91-bc9e-ad0fba20241e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "7ae4306f-350c-4747-89b4-fd180a878230",
-                            ConcurrencyStamp = "777f6b22-f2c5-422f-8a5e-9fce61ab3a89",
+                            Id = "ddf0d288-cc60-4bfc-b3d1-0d50e33faaa1",
+                            ConcurrencyStamp = "07dfa6d0-b55b-4b26-9ae7-9b5331a06260",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "1a8f7a5b-2281-496a-8ee9-ecfd3622d92e",
+                            ConcurrencyStamp = "2fc519ca-d25c-44ac-b579-860988b4b0e0",
+                            Name = "SuperAdmin",
+                            NormalizedName = "SUPERADMIN"
                         });
                 });
 
