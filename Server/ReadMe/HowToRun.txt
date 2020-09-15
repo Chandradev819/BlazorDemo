@@ -2,22 +2,34 @@
 
 If you are running without any database restore. Please follow this instruction
 1. Run the this Command on Nuget package Manger
- a> add-migration intial11
+ a> add-migration intial
  b> update-database
 
- Otherwise, you can also restore DBscript in your database,
+ Note: I have mapped the required data for this demo in given DB Script folder
 
  While creating the AdminUser, Start the username starting with admin
  While creating the SuperAdminUser, Start the username starting with SuperAdmin
 
  User Detials
  ---------------------
- 1. Admin@gmail.com (can view Fetch Data page)
- 2. SuperAdmin@gmail.com (Can view all the page)
- 3. chandradev@gmail.com (Can view only Home and Counter Page)
+ 1. chandradev@gmail.com (Can view only Home and Counter Page)
+ 2. Admin@gmail.com (can view Fetch Data page)
+ 3. SuperAdmin@gmail.com (Can view all the page)
+ 
+
+Password for All: Test@1234
+
 
  PLease view the data mapping in this table
  Select * from dbo.MenuItems
+
+ Useful Query verify in database
+ ------------------------------------------------
+use PolicyBasedAuthClientSideBlazor3
+Select * from dbo.MenuItems
+Select * from dbo.AspNetUserRoles
+Select * from dbo.AspNetUsers
+Select * from dbo.AspNetRoles
 
 
 
